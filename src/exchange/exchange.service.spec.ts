@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CurrenciesService, ExchangeService } from './exchange.service';
+import { ExchangeService } from './exchange.service';
 import { BadRequestException } from '@nestjs/common';
+import { CurrenciesService } from '../currencies/currencies.service';
 
 describe('ExchangeService', () => {
   let service: ExchangeService;

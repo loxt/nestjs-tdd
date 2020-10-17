@@ -1,8 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-
-export class CurrenciesService {
-  async getCurrency(currency: string): Promise<any> {}
-}
+import { CurrenciesService } from '../currencies/currencies.service';
 
 @Injectable()
 export class ExchangeService {
