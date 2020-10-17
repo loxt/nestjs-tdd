@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CurrenciesService } from './currencies.service';
+import { InternalServerErrorException } from '@nestjs/common';
 
 describe('CurrenciesService', () => {
   let service: CurrenciesService;
@@ -14,5 +15,19 @@ describe('CurrenciesService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  describe('getCurrency()', () => {
+    it('should be throw if repository throw', async () => {
+      await expect(service.getCurrency('INVALID')).rejects.toThrow(
+        new InternalServerErrorException(),
+      );
+    });
+
+    it('should be not throw if repository resolves', async () => {
+      await expect(service.getCurrency('USD')).resolves.not.toThrow(
+        new InternalServerErrorException(),
+      );
+    });
   });
 });
